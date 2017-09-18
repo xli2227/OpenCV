@@ -4,14 +4,14 @@
 #include <Kinect.h>
 #include <d2d1.h>
 //OpenCV Header
-#include <opencv2\core\core.hpp>
-#include <opencv2\highgui\highgui.hpp>
+#include "highgui/highgui.hpp"    
+#include "opencv2/nonfree/nonfree.hpp"    
+#include "opencv2/legacy/legacy.hpp"   
 
-#include "PointMatching.h"
 
 using namespace std;
 using namespace cv;
-const RGBQUAD c_green = { 255, 255, 255 };
+
 
 int main()
 {
@@ -113,7 +113,7 @@ int main()
 			}
 			rgb_im.create(iHeight, iWidth, CV_8UC4);
 			memcpy(rgb_im.data, nBuffer, 4 * iHeight*iWidth * sizeof(BYTE));
-			imwrite("ColorImage2.jpg", rgb_im);
+			imwrite("ColorImage1.jpg", rgb_im);
 			// release frame
 			//rgbFrame->Release();
 			flag = true;
@@ -162,7 +162,7 @@ int main()
 		}
 	}
 	//imwrite("DepthImage1", rgbd_im);
-	FileStorage fs("DepthData2.xml", FileStorage::WRITE);
+	FileStorage fs("DepthData1.xml", FileStorage::WRITE);
 	fs << "depth" << rgbd_im;
 	fs.release();
 	cv::cvtColor(rgb_im, rgb_display, CV_BGRA2BGR);
